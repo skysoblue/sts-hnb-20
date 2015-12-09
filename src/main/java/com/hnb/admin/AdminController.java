@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hnb.member.MemberServiceImpl;
 import com.hnb.member.MemberVO;
@@ -74,7 +75,10 @@ public class AdminController {
 		return model;
 	}
 	@RequestMapping("/insert")
-	public Model insert(String id,String password,String email, String phone, String addr, Model model){
+	public Model insert(
+		@RequestParam("id") String id,
+		@RequestParam("password") String password,
+		String email, String phone, String addr, Model model){
 		logger.info("insert 진입");
 		logger.info("id{}",id);
 		logger.info("password{}",password);
