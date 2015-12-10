@@ -1,11 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	
 	<div>
 	<div id="frm_toggle">
 	<c:if test="${empty sessionScope.user}">
@@ -38,9 +31,7 @@
 		세상을 바꾸는 힘, Culture MTB(Movie Theater BOX)</div>
 	</div>
 
-	<!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation" >
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -48,10 +39,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
                 <a class="navbar-brand" href="index.html">Business Casual</a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style=" margin-left:33%;" >
                 <ul class="nav navbar-nav">
                     <li>
@@ -70,10 +59,15 @@
             </div>
             <!-- /.navbar-collapse -->
     </nav>
-<script src="${context}/js/global.js"></script>  
-<script src="${context}/js/jquery.js"></script>
-<script src="${context}/js/bootstrap.js"></script>
-<script src="${context}/js/bootstrap.min.js"></script>
+<script src="${js}/global.js"></script>  
+<script src="${js}/member.js"></script>  
+<script src="${js}/movie.js"></script>  
+<script src="${js}/ticket.js"></script>  
+<script src="${js}/admin.js"></script>  
+<script src="${js}/bom.js"></script>  
+<script src="${js}/jquery.js"></script>
+<script src="${js}/bootstrap.js"></script>
+<script src="${js}/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$(window).on("popstate", function(event) {
@@ -90,6 +84,7 @@
 				Member.movie("${context}");
 				break;
 			case "Movie_home":
+				alert("무비홈으로");
 				Movie.home("${context}");
 				break;
 			case "Member_join":
@@ -108,6 +103,7 @@
 		
 		/* 네비게이션 버튼 */
 		$("#movie_btn").click(function() {
+			alert("영화버튼 클릭 !!");
 			history.pushState("Movie_home","","");
 			Movie.home("${context}");
 		});
