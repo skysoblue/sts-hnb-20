@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  <mapper namespace="com.hnb.mapper.MemberMapper">
- <select id="selectAll" resultType="com.hnb.member.MemberVO">
+ <select id="selectAll" resultType="com.hnb.member.MemberVO" parameterType="com.hnb.global.Command">
  	SELECT 
 	 	ID AS id,
 	 	PASSWORD AS password,
@@ -14,7 +14,8 @@
 	 	ADDR AS addr,
 	 	EMAIL AS email,
 	 	REGDATE AS regdate
- 	FROM MEMBER
+ 	FROM (SELECT ROWNUM AS seq, member.* FROM MEMBER member)
+ 	WHERE seq BETWEEN #{start} AND #{end}
  </select>
  <select id="selectSomeBy" resultType="com.hnb.member.MemberVO" parameterType="com.hnb.global.Command">
  	SELECT 
@@ -42,7 +43,7 @@
 	 	REGDATE AS regdate
  	FROM MEMBER WHERE ID = #{id}
  </select>
- <select id="count">
+ <select id="count" resultType="int">
  	SELECT COUNT(*) AS count FROM MEMBER
  </select>
  

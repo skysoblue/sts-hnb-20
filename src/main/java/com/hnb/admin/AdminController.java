@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hnb.global.Command;
+import com.hnb.global.CommandFactory;
 import com.hnb.member.MemberServiceImpl;
 import com.hnb.member.MemberVO;
 import com.hnb.movie.MovieServiceImpl;
@@ -48,7 +50,8 @@ public class AdminController {
 	public Model memberList(Model model){
 		logger.info("AdminController-movieList() 진입");
 		List<MemberVO> list;
-		list = service.getList();
+		Command command = CommandFactory.list("1");
+		list = service.getList(command);
 		model.addAttribute("memberList",list);
 		
 		return model;

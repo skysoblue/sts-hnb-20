@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hnb.global.Command;
 import com.hnb.mapper.MemberMapper;
 import com.hnb.movie.MovieController;
 
@@ -26,10 +27,10 @@ public class MemberServiceImpl  implements MemberService{
 	
 	// 전체 회원목록 조회
 	@Override
-	public List<MemberVO> getList() {
+	public List<MemberVO> getList(Command commnad) {
 		logger.info("MemberServiceImpl : getList");
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-		return mapper.selectAll();
+		return mapper.selectAll(commnad);
 	}
 	
 	// 임의의 검색어로 조회

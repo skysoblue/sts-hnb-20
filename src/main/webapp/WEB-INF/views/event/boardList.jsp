@@ -1,8 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <LINK REL="stylesheet" type="text/css" href="${css}/board.css"/>	
+<c:set var="PAGESIZE" value="5"/>
+<c:set var="GROUPSIZE" value="3"/>
+<c:choose>
+	<c:when test="${count%PAGESIZE eq 0}">
+		<c:set var="totPage" value="${count/PAGESIZE}"></c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="totPage" value="${count/PAGESIZE+1}"></c:set>
+	</c:otherwise>
+</c:choose>
+<c:set var="startPage" value="${pageNo - ((pageNo-1)%GROUPSIZE) }"></c:set>
+<c:choose>
+	<c:when test="${startPage+GROUPSIZE-1 le totPage}">
+		<c:set var="lastPage" value="${startPage+GROUPSIZE-1}"></c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="lastPage" value="${totPage}"></c:set>
+	</c:otherwise>
+</c:choose>
 <div id="boardList">
 
-<h1 align=center style='color:white;margin-bottom:50px'>회원목록</h1>
+<h1 align=center style='color:white;margin-bottom:30px'>회원목록</h1>
 <table id="tab_test">
 	<tr>
 		<td style="text-align: right">${count} 명</td>
@@ -37,11 +56,32 @@
 			<IMG SRC="${img}/btn_new.gif" onClick="javascript:location.replace('BoardWrite.jsp')"; STYLE=CURSOR:HAND>
 		</TD>
 		<TD WIDTH=320 ALIGN=CENTER>
-			<IMG SRC="${img}/btn_bf_block.gif">&nbsp;
-			<IMG SRC="${img}/btn_bf_page.gif">&nbsp;    	
-			1&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;4&nbsp;&nbsp;5&nbsp;&nbsp;6&nbsp;&nbsp;7&nbsp;&nbsp;8&nbsp;&nbsp;9&nbsp;&nbsp;10&nbsp;
-			<IMG SRC="${img}/btn_nxt_page.gif">&nbsp; 
-			<IMG SRC="${img}/btn_nxt_block.gif">    	    		     
+			<%-- <IMG SRC="${img}/btn_bf_block.gif">&nbsp; --%>
+			<c:if test="${startPage-GROUPSIZE gt 0}">
+				<a href="${context}/member/boardList/${startPage-GROUPSIZE}">
+					<IMG SRC="${img}/btn_bf_page.gif">&nbsp;  
+				</a>
+			</c:if>
+			<c:forEach begin="${startPage}" end="${lastPage}" step="1" varStatus="status">
+				<c:choose>
+					<c:when test="${status.index == pageNo}">
+						<font style="color:red;font-size: 20px">${status.index}</font>	
+					</c:when>
+					<c:otherwise>
+						<a href="${context}/member/boardList/${status.index}">
+							<font>${status.index}</font>
+						</a>
+					</c:otherwise>
+				</c:choose>
+				 
+			</c:forEach>
+			<c:if test="${startPage-GROUPSIZE lt totPage}">
+				<a href="${context}/member/boardList/${startPage+GROUPSIZE}">
+					<IMG SRC="${img}/btn_nxt_page.gif">&nbsp;    
+				</a>
+			</c:if>
+			
+			<%-- <IMG SRC="${img}/btn_nxt_block.gif">   --%>  	    		     
 		</TD>
 		<TD WIDTH=200 ALIGN=RIGHT>
 			<SELECT NAME="column" SIZE=1>
