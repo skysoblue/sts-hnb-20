@@ -1,8 +1,8 @@
-package com.hnb.article;
+package com.hnb.mapper;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ArticleDAOImpl {
+public interface EventMapper {
 
 }

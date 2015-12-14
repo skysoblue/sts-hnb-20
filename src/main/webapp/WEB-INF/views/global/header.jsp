@@ -103,7 +103,6 @@
 		
 		/* 네비게이션 버튼 */
 		$("#movie_btn").click(function() {
-			alert("영화버튼 클릭 !!");
 			history.pushState("Movie_home","","");
 			Movie.home("${context}");
 		});
@@ -120,7 +119,7 @@
 		
 		$("#event_btn").click(function() {
 			history.pushState("Event_home","","");
-			$("#box").load();
+			location.href = "${context}/event/boardList";
 		});
 		
 		/* 로그인 버튼 */
