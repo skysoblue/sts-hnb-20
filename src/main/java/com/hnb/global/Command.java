@@ -1,7 +1,7 @@
 package com.hnb.global;
 
 public class Command {
-	private String action, view, page; 
+	private String action, view, page, column, keyword; 
 	public Command(String action, String page) {
 		this.action = action;
 		this.page = page;
@@ -25,4 +25,17 @@ public class Command {
 	public void setPage(String page) {
 		this.page = page;
 	}
+	public String getColumn() {
+		return column;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setColumn(String column) {
+		this.column = column;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
 }

@@ -3,6 +3,11 @@
 <div id="boardList">
 
 <h1 align=center style='color:white;margin-bottom:50px'>회원목록</h1>
+<table id="tab_test">
+	<tr>
+		<td style="text-align: right">${count} 명</td>
+	</tr>
+</table>
 <TABLE id="tab_borderList">
 	
 	<TR ALIGN=CENTER>
@@ -14,7 +19,7 @@
 	</TR>
 	<c:forEach var="member" items="${memberList}" varStatus="status">
 	<TR>
-		<TD WIDTH=10% ALIGN=CENTER>1</TD>
+		<TD WIDTH=10% ALIGN=CENTER>${status.index+1}</TD>
 		<TD WIDTH=20% ALIGN=CENTER>${member.id}</TD>
 		<TD WIDTH=20% ALIGN=CENTER><A HREF="BoardContent.jsp">${member.name}</A></TD>
 		<TD WIDTH=30% ALIGN=LEFT>${member.email}</TD>
@@ -53,3 +58,7 @@
 
 </FORM>
 </div>	
+<!-- 
+전체레코드수 - ((현재페이지번호-1)*한페이지당레코드수+현재게시물출력순서)
+	count - ((nowPage-1)*rowPerPage+status.index)
+ -->
