@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -18,10 +20,9 @@ import org.springframework.web.bind.support.SessionStatus;
 @RequestMapping("/member")
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	@Autowired
-	MemberServiceImpl service;
-	@Autowired
-	MemberVO member;
+	@Autowired MemberServiceImpl service;
+	@Autowired MemberVO member;
+	
 	
 	@RequestMapping("/admin_home")
 	public String adminHome(){
@@ -43,8 +44,7 @@ public class MemberController {
 			String gender,
 			String email,
 			String phone,
-			Model model
-			){
+			Model model){
 		logger.info("가입 아이디 : {}",id);
 		logger.info("가입 패스워드 : {}",password);
 		logger.info("가입 이름 : {}",name);
@@ -80,35 +80,33 @@ public class MemberController {
 		return "member/join_Result";
 	}
 	@RequestMapping("/logout")
-	public Model logout(Model model,SessionStatus status){
+	public String logout(Model model,SessionStatus status){
 		logger.info("멤버컨트롤러 logout() - 진입");
 		status.setComplete();
-		model.addAttribute("result", "success");
-		return model;
+		return "global/default.tiles";
 	}
 	@RequestMapping("/login")
-	public Model login(String id,@RequestParam("pw")String password,
-			HttpServletRequest request,Model model){
+	public @ResponseBody MemberVO login(String id,
+			@RequestParam("pw")String password,
+			Model model){
 		logger.info("멤버컨트롤러 login() - 진입");
 		logger.info("유저아이디 : {}",id);
 		logger.info("유저 비밀번호: {}",password);
 		member = service.login(id, password);
-		request.getSession().setAttribute("user", member);
-		if (member == null) {
-			model.addAttribute("result", "fail");
+		model.addAttribute("user", member);
+		if (member.getId().equals(id)) {
+			logger.info("로그인성공");
 		} else {
-			//session
-			
-			model.addAttribute("result", "success");
-			model.addAttribute("id", id);
-			model.addAttribute("pw", password);
-			if (id.equals("choa")) {
-				model.addAttribute("admin", "yes");
-			} else {
-				model.addAttribute("admin", "no");
-			}
+			logger.info("로그인실패");
 		}
-		return model;
+		// choa 는 관리자	
+		if (id.equals("choa")) {
+			model.addAttribute("admin", "yes");
+		} else {
+			model.addAttribute("admin", "no");
+		}
+		
+		return member;
 	}
 	@RequestMapping("/check_Overlap")
 	public Model checkOverlap(
@@ -125,15 +123,17 @@ public class MemberController {
 		}
 		return model;
 	}
-	@RequestMapping("/mapage")
+	@RequestMapping("/mypage")
 	public String mypage(){
 		logger.info("멤버컨트롤러 mypage() - 진입");
-		return "member/mypage";
+		return "member/mypage.tiles";
 	}
-	@RequestMapping("/detail")
-	public Model detail(Model model){
+	@RequestMapping("/detail/{id}")
+	public @ResponseBody MemberVO detail(
+			@PathVariable("id")String id){
 		logger.info("멤버컨트롤러 detail() - 진입");
-		return model;
+		member = service.selectById(id);
+		return member;
 	}
 	
 	
