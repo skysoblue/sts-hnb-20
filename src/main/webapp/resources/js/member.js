@@ -3,7 +3,8 @@ var Member = {
 			$("#box").load(project + "/member/Member.do");
 		},
 		login : function(project) {
-			$.ajax(project + "/member/Member.do?page=login",{
+			alert('로그인버튼 클릭');
+			$.ajax(project + "/member/login",{
 				data : {
 					id : $(".form-2 input:text[name=login]").val(),
 					pw : $(".form-2 input:password[name=password]").val()
