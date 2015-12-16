@@ -59,15 +59,7 @@
             </div>
             <!-- /.navbar-collapse -->
     </nav>
-<script src="${js}/global.js"></script>  
-<script src="${js}/member.js"></script>  
-<script src="${js}/movie.js"></script>  
-<script src="${js}/ticket.js"></script>  
-<script src="${js}/admin.js"></script>  
-<script src="${js}/bom.js"></script>  
-<script src="${js}/jquery.js"></script>
-<script src="${js}/bootstrap.js"></script>
-<script src="${js}/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 	$(function() {
 		$(window).on("popstate", function(event) {
@@ -129,11 +121,11 @@
 		});
 	
 		$("#header").on("click","#login_btn",function() {
-			Member.login("${context}");
+			Member.login(context);
 		});
 		
 		$("#header").on("click","#logout_btn",function() {
-			Member.logout("${context}");
+			Member.logout(ctx);
 		});
 		
 		/*마이페이지 버튼 */

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script src="${context}/js/global.js"></script>
 <script type="text/javascript">
 	$(function() {
 		LoginMember.detail('${context}/member/detail/${user.id}');
@@ -87,7 +86,7 @@
 			},
 			style : function(){
 				$('#tab_detail').css('width','80%').css('height','400px').css('margin','auto').css('border','1px solid white');
-				$('td').css('text-align','center').css('border','1px solid white');
+				$('td').add('th').css('text-align','center').css('border','1px solid white');
 				$('tr').add('th').add('td').css('float','center').css('color','white').css('border','1px solid white');
 				$('#box').css('clear','both').css('margin','20px');
 				$('#item').css('width','400px');

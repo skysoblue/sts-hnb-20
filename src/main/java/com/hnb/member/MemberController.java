@@ -2,6 +2,7 @@ package com.hnb.member;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.fileupload.FileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,6 +134,7 @@ public class MemberController {
 			@PathVariable("id")String id){
 		logger.info("멤버컨트롤러 detail() - 진입");
 		member = service.selectById(id);
+		FileUpload f = new FileUpload();
 		return member;
 	}
 	
