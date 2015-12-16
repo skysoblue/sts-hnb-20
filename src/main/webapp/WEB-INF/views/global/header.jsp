@@ -62,15 +62,16 @@
 
 <script type="text/javascript">
 	$(function() {
+		var $event = $('#event_btn');
 		/* 메인 버튼 */
 		$("#home").click(function() {
 			$("#box").load(context+"/global/Main.do?page=default");
 		});
 		
 		/* 네비게이션 버튼 */
-		$("#movie_btn").click(function() {
-			Movie.home(context);
-		});
+		$("#movie_btn").click(function() {Movie.home(context);});
+			
+		
 		
 		$("#ticket_btn").click(function() {
 			$("#box").load(context+"/ticket/Ticket.do");
@@ -79,15 +80,12 @@
 		$("#theater_btn").click(function() {
 			$("#box").load();
 		});
-		
-		$("#event_btn").click(function() {
-			location.href = context+"/event/boardList/1";
-		});
+		global.move($event, context+"/event/boardList/1");
 		/* 로그인 버튼 */
 		$("#header").on("click","#join_btn",function() {
 			Member.join(context);
 		});
-	
+		Global.load();
 		$("#header").on("click","#login_btn",function() {
 			Member.login(context);
 		});
