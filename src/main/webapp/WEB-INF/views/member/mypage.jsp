@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	$(function() {
-		LoginMember.detail('${context}/member/detail/${user.id}');
+		LoginMember.detail(context+'/member/detail/${user.id}');
 	});
 	var LoginMember = {
 			detail : function(url) {
 				$.getJSON(url,
 					function(data){
 					var table = '<table id="tab_detail"><tr><td rowspan="8" id="td_profile"><img id="profile" src="${img}/default.png" width="70%" height="80%"/></td>'
-					+'<th id="item">항목</th><th>빈 칸</th></tr><tr><td>아이디</td><td>${user.id}</td></tr><tr><td>비밀번호</td><td>${user.password}'
+					+'<th id="item">항목</th><th>빈 칸</th></tr><tr><td>아이디</td><td>${member.id}</td></tr><tr><td>비밀번호</td><td>${user.password}'
 					+'</td></tr><tr><td>이름</td><td>${user.name}</td></tr><tr><td>생일</td><td>${user.gender}</td></tr><tr>'
 					+'<td>주소</td><td>${user.addr}</td></tr><tr><td>이메일</td><td>${user.email}</td>'
 					+'</tr><tr><td>등록일</td><td>${user.regdate}</td></tr><tr>'
@@ -22,22 +22,22 @@
 						LoginMember.updateForm();
 					});
 					$('#remove').click(function() {
-						LoginMember.remove('${member.userid}');
+						LoginMember.remove('${member.id}');
 					});
 				});
 			},
 			updateForm : function() {
-				$.getJSON('${context}/member.do?page=detail&userid=${member.userid}',
+				$.getJSON(context+'/member/detail/${user.id}',
 						function(data){
 					$('<form action="${context}/member/update" id="frm">')
-					.appendTo($('#box').empty());
-					var table = '<table><tr><td rowspan="9" id="td_profile"><img id="profile" src="${context}/images/${member.profile}" width="70%" height="80%"/></td>'
-					+'<th id="item">항목</th><th>빈 칸</th></tr><tr><td>아이디</td><td>${member.userid}</td></tr><tr>'
+					.appendTo($('.mainView').empty());
+					var table = '<table id="tab_detail"><tr><td rowspan="9" id="td_profile"><img id="profile" src="${img}/default.png" width="70%" height="80%"/></td>'
+					+'<th id="item">항목</th><th>빈 칸</th></tr><tr><td>아이디</td><td>${member.id}</td></tr><tr>'
 					+'<td>비밀번호</td><td><input type="password" id="password" value="${member.password}">'
 					+'</td></tr><tr><td>이름</td><td>${member.name}</td></tr><tr><td>생일</td><td>${member.gender}</td></tr><tr>'
 					+'<td>주소</td><td><input type="text" id="addr" value="${member.addr}"></td></tr>'
-					+'<tr><td>이메일</td><td><input type="text" id="email" value="${member.email}"></td>'
-					+'<td><input type="text" id="phone" value="${member.phone}"></td>'
+					+'<tr><td>이메일</td><td><input type="text" id="email" value="${member.email}"></td></tr>'
+					+'<tr><td>전화번호</td><td><input type="text" id="phone" value="${member.phone}"></td>'
 					+'</tr><tr><td>등록일</td><td>${member.regdate}</td></tr><tr>'
 					+'<td><button id="changeImg">사진변경</button></td>'
 					+'<td><button id="changeInfo">정보수정</button></td>'
