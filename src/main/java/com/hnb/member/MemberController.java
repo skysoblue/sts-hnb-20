@@ -2,7 +2,6 @@ package com.hnb.member;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.fileupload.FileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.hnb.global.FileUpload;
 
 @Controller
 @SessionAttributes("user")
@@ -134,7 +137,32 @@ public class MemberController {
 			@PathVariable("id")String id){
 		logger.info("멤버컨트롤러 detail() - 진입");
 		member = service.selectById(id);
-		FileUpload f = new FileUpload();
+		return member;
+	}
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	public @ResponseBody MemberVO update(
+			@RequestParam(required=false,value="file")MultipartFile multipartFile,
+			@RequestParam("password")String password,
+			@RequestParam("addr")String addr,
+			@RequestParam("email")String email,
+			@RequestParam("phone")String phone,
+			@RequestParam("id")String id){
+		logger.info("멤버컨트롤러 update() - 진입");
+		String path = "C:\\sts\\workspace\\hnb20\\src\\main\\webapp\\resources\\images\\";
+		FileUpload fileUpload = new FileUpload();
+		String fileName = multipartFile.getOriginalFilename();
+		String fullPath = fileUpload.uploadFile(multipartFile,path,fileName);
+		member.setPassword(password);
+		member.setAddr(addr);
+		member.setEmail(email);
+		member.setPhone(phone);
+		member.setProfile(fileName);
+		int result = service.change(member);
+		if (result == 1) {
+			logger.info("멤버컨트롤러 수정성공");
+		} else {
+			logger.info("멤버컨트롤러 수정실패");
+		}
 		return member;
 	}
 	
