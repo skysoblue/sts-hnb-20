@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.hnb.global.Constants;
 import com.hnb.global.FileUpload;
 
 @Controller
@@ -87,7 +88,7 @@ public class MemberController {
 	public String logout(Model model,SessionStatus status){
 		logger.info("멤버컨트롤러 logout() - 진입");
 		status.setComplete();
-		return "global/default.tiles";
+		return "redirect:/";
 	}
 	@RequestMapping("/login")
 	public @ResponseBody MemberVO login(String id,
@@ -115,8 +116,7 @@ public class MemberController {
 	@RequestMapping("/check_Overlap")
 	public Model checkOverlap(
 			String id,
-			Model model
-			){
+			Model model){
 		logger.info("멤버컨트롤러 checkOverlap() - 진입");
 		if (service.selectById(id).getId() == null) {
 			model.addAttribute("result", "usable");
@@ -148,10 +148,11 @@ public class MemberController {
 			@RequestParam("phone")String phone,
 			@RequestParam("id")String id){
 		logger.info("멤버컨트롤러 update() - 진입");
-		String path = "C:\\sts\\workspace\\hnb20\\src\\main\\webapp\\resources\\images\\";
+		String path = Constants.imageDomain+"resources\\images\\";
 		FileUpload fileUpload = new FileUpload();
 		String fileName = multipartFile.getOriginalFilename();
 		String fullPath = fileUpload.uploadFile(multipartFile,path,fileName);
+		logger.info("파일업로드 경로 : {}",fullPath);
 		member.setPassword(password);
 		member.setAddr(addr);
 		member.setEmail(email);

@@ -85,7 +85,6 @@
 		$("#header").on("click","#join_btn",function() {
 			Member.join(context);
 		});
-		Global.load();
 		$("#header").on("click","#login_btn",function() {
 			Member.login(context);
 		});
