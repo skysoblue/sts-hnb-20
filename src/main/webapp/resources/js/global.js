@@ -11,12 +11,12 @@ var global = {
       $("<div id='footer'></div>").appendTo($("#wrapper"));
    },
 	load : function(btn,target,url) {
-		$(btn).click(function() {
-			$(target).load(url);
+		btn.click(function() {
+			target.load(url);
 		});
 	},
 	move : function(btn,url) {
-		$(btn).click(function() {
+		btn.click(function() {
 			location.href = url;
 		});
 	}
