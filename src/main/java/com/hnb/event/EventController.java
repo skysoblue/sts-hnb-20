@@ -1,5 +1,6 @@
 package com.hnb.event;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -35,7 +36,8 @@ public class EventController {
 			Model model){
 		logger.info("EventController article()");
 		logger.info("넘어온 페이지번호 : {}",pageNo);
-		List<ArticleVO> list = articleService.getList(CommandFactory.list(pageNo));
+		List<ArticleVO> list = new ArrayList<ArticleVO>();
+		//List<ArticleVO> list = articleService.getList(CommandFactory.list(pageNo));
 		/*model.addAttribute("memberList",list);
 		model.addAttribute("count", service.count());
 		model.addAttribute("pageNo",pageNo);*/

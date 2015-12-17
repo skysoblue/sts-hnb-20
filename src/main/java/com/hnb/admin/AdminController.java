@@ -49,7 +49,7 @@ public class AdminController {
 	public @ResponseBody Map<String,Object> memberList(
 			@PathVariable("pageNo")String pageNo,
 			Model model){
-		logger.info("EventController memberList()");
+		logger.info("AdminController memberList()");
 		logger.info("넘어온 페이지번호 : {}",pageNo);
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("list", memberService.getList(CommandFactory.list(pageNo)));
