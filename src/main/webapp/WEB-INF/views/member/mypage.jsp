@@ -22,6 +22,7 @@
 					$('#remove').click(function() {
 						LoginMember.remove('${member.id}');
 					});
+					
 				});
 			},
 			updateForm : function() {
