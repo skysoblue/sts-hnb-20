@@ -12,8 +12,8 @@ var Member = {
 				data : JSON.stringify(member),
 				dataType : "json",
 				type : 'post',
-				contentType: "application/json;",
-				mimeType: "application/json;",
+				contentType: "application/json",
+				mimeType: "application/json",
 				async : false,
 				success : function(data) {
 					if(data != null){

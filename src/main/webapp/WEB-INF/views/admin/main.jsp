@@ -16,7 +16,6 @@
 </div>
 <script>
 $(function() {
-	$('#header').load('${context}/admin.do?page=header');
 	$('#main_left').css("float","left").css('width','300px').css('text-align','center');
 	$('#main_right').css("float","left").css("margin-left","150px").css('width','50%');
 	$('#tab_member').css('width','100%');
@@ -29,7 +28,7 @@ $(function() {
   });
  var Admin = {
 	memberList : function() {
-		 $.getJSON('${context}/admin.do?page=member_list', function(data) {
+		 $.getJSON('${context}/admin/member_list/1', function(data) {
 			 var table = '<h1>회원목록</h1>'
 					+'<table id="tab_member"><tr><th>아이디</th><th>이름</th><th>성별</th>'
 					+'<th>생년원일</th><th>전화번호</th><th>이메일</th></tr>';

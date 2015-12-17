@@ -1,16 +1,19 @@
 package com.hnb.admin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hnb.global.Command;
 import com.hnb.global.CommandFactory;
 import com.hnb.member.MemberServiceImpl;
 import com.hnb.member.MemberVO;
@@ -22,20 +25,15 @@ import com.hnb.movie.MovieVO;
 public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
-	@Autowired
-	MemberServiceImpl service;
-	@Autowired
-	MemberVO member;
-	@Autowired
-	MovieVO movie;
-	@Autowired
-	MovieServiceImpl movieService;
+	@Autowired MemberVO member;
+	@Autowired MovieVO movie;
+	@Autowired MemberServiceImpl memberService;
+	@Autowired MovieServiceImpl movieService;
 	
-	
-	@RequestMapping("/Admin")
+	@RequestMapping("/main")
 	public String home(){
 		logger.info("AdminController-home() 진입");
-		return "admin/Admin";
+		return "admin/admin/main.tiles";
 	}
 	@RequestMapping("/movie_list")
 	public Model movieList(Model model){
@@ -46,15 +44,18 @@ public class AdminController {
 		
 		return model;
 	}
-	@RequestMapping("/member_list")
-	public Model memberList(Model model){
-		logger.info("AdminController-movieList() 진입");
-		List<MemberVO> list;
-		Command command = CommandFactory.list("1");
-		list = service.getList(command);
-		model.addAttribute("memberList",list);
-		
-		return model;
+	
+	@RequestMapping("/memberList/{pageNo}")
+	public @ResponseBody Map<String,Object> boardList(
+			@PathVariable("pageNo")String pageNo,
+			Model model){
+		logger.info("EventController article()");
+		logger.info("넘어온 페이지번호 : {}",pageNo);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("list", memberService.getList(CommandFactory.list(pageNo)));
+		map.put("count", memberService.count());
+		map.put("pageNo", pageNo);
+		return map;
 	}
 	
 	@RequestMapping("/member_profile")
@@ -63,7 +64,7 @@ public class AdminController {
 			){
 		logger.info("개인 프로필 진입");
 		logger.info("가져온 아이디{}",id);
-		member = service.selectById(id);
+		member = memberService.selectById(id);
 		model.addAttribute("member", member);
 		return model;
 		
@@ -88,12 +89,12 @@ public class AdminController {
 		logger.info("email{}",email);
 		logger.info("phone{}",phone);
 		logger.info("addr{}",addr);
-		member = service.selectById(id);
+		member = memberService.selectById(id);
 		member.setPassword(password);
 		member.setEmail(email);
 		member.setPhone(phone);
 		member.setAddr(addr);
-		int result = service.change(member);
+		int result = memberService.change(member);
 		model.addAttribute("result", id + " 님의 정보수정을 완료했습니다.");
 		return model;
 	}
@@ -110,7 +111,7 @@ public class AdminController {
 	}
 	@RequestMapping("/delete")
 	public Model delete(String id,Model model){
-		service.remove(id);
+		memberService.remove(id);
 		model.addAttribute("result",id+"님의 탈퇴를 완료했습니다.");
 		return model;
 	}
