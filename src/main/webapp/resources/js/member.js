@@ -12,9 +12,9 @@ var Member = {
 				data : JSON.stringify(member),
 				dataType : "json",
 				type : 'post',
-				 contentType: "application/json;",
-				 mimeType: "application/json;",
-				 async : false,
+				contentType: "application/json;",
+				mimeType: "application/json;",
+				async : false,
 				success : function(data) {
 					if(data != null){
 						alert("로그인 성공 !!!!");

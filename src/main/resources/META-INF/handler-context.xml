@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!-- RequestMapping -->
+	<!-- RequestMapping -->
 	<beans:bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<beans:property name="messageConverters">
@@ -16,4 +16,4 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
-	</beans:beans>
+</beans:beans>

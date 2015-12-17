@@ -96,11 +96,13 @@ public class MemberController {
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public @ResponseBody MemberVO login(@RequestBody MemberVO param,Model model){
 		logger.info("멤버컨트롤러 login() - 진입");
-		logger.info("유저아이디 : {}",param.getId());
+		logger.info("넘어온 유저아이디 : {}",param.getId());
 		logger.info("유저비번 : {}",param.getPassword());
 		member = service.login(param.getId(), param.getPassword());
 		model.addAttribute("user", member);
-		if (member.getId().equals(member.getId())) {
+		String u = member.getId();
+		logger.info("로그인 과정에서 체크하는 아이디 : {}",u);
+		if (member.getId().equals(param.getId())) {
 			logger.info("로그인성공");
 		} else {
 			logger.info("로그인실패");
