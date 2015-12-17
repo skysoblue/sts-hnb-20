@@ -3,4 +3,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  <mapper namespace="com.hnb.mapper.ArticleMapper">
+ 	<select id="getList" resultType="com.hnb.article.ArticleVO" parameterType="com.hnb.global.Command"></select>
+ 	<select id="searchByKeyword" resultType="com.hnb.article.ArticleVO" parameterType="com.hnb.global.Command"></select>
+ 	<select id="searchById" resultType="com.hnb.article.ArticleVO" parameterType="int"></select>
+ 	<select id="count" resultType="int"></select>
+ 	<select id="countByKeyword" resultType="int" parameterType="com.hnb.global.Command"></select>
+ 	<insert id="write" parameterType="com.hnb.article.ArticleVO"></insert>
+ 	<update id="change" parameterType="com.hnb.article.ArticleVO"></update>
+ 	<delete id="remove" parameterType="int"></delete>
  </mapper>

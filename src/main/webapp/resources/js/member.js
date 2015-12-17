@@ -3,13 +3,18 @@ var Member = {
 			$("#box").load(project + "/member/Member.do");
 		},
 		login : function(project) {
-			alert('로그인버튼 클릭');
+			var member = {
+					"id":$('#id').val(),
+					"password":$('#password').val()
+					};
+			alert('로그인버튼 클릭'+member);
 			$.ajax(project + "/member/login",{
-				data : {
-					id : $(".form-2 input:text[name=login]").val(),
-					pw : $(".form-2 input:password[name=password]").val()
-				},
+				data : JSON.stringify(member),
 				dataType : "json",
+				type : 'post',
+				 contentType: "application/json;",
+				 mimeType: "application/json;",
+				 async : false,
 				success : function(data) {
 					if(data != null){
 						alert("로그인 성공 !!!!");

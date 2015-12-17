@@ -7,8 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hnb.global.Constants;
 import com.hnb.global.FileUpload;
+import com.hnb.global.Param;
 
 @Controller
 @SessionAttributes("user")
@@ -90,26 +93,24 @@ public class MemberController {
 		status.setComplete();
 		return "redirect:/";
 	}
-	@RequestMapping("/login")
-	public @ResponseBody MemberVO login(String id,
-			@RequestParam("pw")String password,
-			Model model){
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public @ResponseBody MemberVO login(@RequestBody MemberVO param,Model model){
 		logger.info("멤버컨트롤러 login() - 진입");
-		logger.info("유저아이디 : {}",id);
-		logger.info("유저 비밀번호: {}",password);
-		member = service.login(id, password);
+		logger.info("유저아이디 : {}",param.getId());
+		logger.info("유저비번 : {}",param.getPassword());
+		member = service.login(param.getId(), param.getPassword());
 		model.addAttribute("user", member);
-		if (member.getId().equals(id)) {
+		if (member.getId().equals(member.getId())) {
 			logger.info("로그인성공");
 		} else {
 			logger.info("로그인실패");
 		}
 		// choa 는 관리자	
-		if (id.equals("choa")) {
+		/*if (member.getId().equals("choa")) {
 			model.addAttribute("admin", "yes");
 		} else {
 			model.addAttribute("admin", "no");
-		}
+		}*/
 		
 		return member;
 	}

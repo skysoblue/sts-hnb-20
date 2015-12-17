@@ -3,18 +3,18 @@
 	<div id="frm_toggle">
 	<c:if test="${empty sessionScope.user}">
 	   	<!-- 로그인 안한 상태 -->
-		<div id="frm_login" class="form-2">
+		<form id="frm_login" class="form-2" name="frm_login">
 			<p class="float">
-				<label for="login"><i class="icon-user">ID</i></label> <input type="text" name="login" placeholder="UserID">
+				<label for="login"><i class="icon-user">ID</i></label> <input type="text" id="id" name="id" placeholder="UserID">
 			</p>
 			<p class="float">
-				<label for="password"><i class="icon-user">PW</i></label> <input type="password" name="password" placeholder="Password" class="showpassword">
+				<label for="password"><i class="icon-user">PW</i></label> <input type="password" id="password" name="password" placeholder="Password" class="showpassword">
 			</p>
 			<p class="clearfix">
 				<a id="join_btn" class="log-twitter">회원 가입</a> 
 				<a id="login_btn" class="log-twitter" style="margin-left:10px;">로그인</a> 
 			</p>
-		</div>
+		</form>
 		</c:if>
 		<c:if test="${not empty sessionScope.user}">
 			<div id="frm_logined" class="form-2">
