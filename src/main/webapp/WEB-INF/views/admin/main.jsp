@@ -27,6 +27,7 @@ var Admin2 = {
 						+"<TD WIDTH=18% ALIGN=CENTER>"+this.regdate+"</TD></TR>"
 					});
 					table += "</TABLE></div>";
+					
 					var pagination = '<TABLE id="pagination">'
 					+'<TR>'
 					+'<TD ALIGN=LEFT WIDTH=100>'
