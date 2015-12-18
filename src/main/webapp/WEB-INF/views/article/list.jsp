@@ -44,46 +44,22 @@ style='width:300px; height : 500px; background-color: white; margin : 0 auto;'>
 
 <script type='text/javascript'>
 	$(function() {
-		board.init();
+		board.init('142','1');
 	});
-	var pop = {
-			up : function() {
-				$('#aaa').magnificPopup({
-					type : 'inline',
-					preloader : false,
-					focus : '#username',
-					modal : true,
-					closeContentPos : true,
-					fixedContentPos: true,
-			        alignTop: false, /* 최상단위치 */
-					showCloseBtn: true
-				});
-				$(document).on('click','.popupClose',function(e){
-					e.preventDefault();
-					$.magnificPopup.close();
-				});
-			}
-	}
+	
 	var board = {
-		init : function(pageNo) {
-			$.getJSON(context+'/article/list/'+pageNo,function(data) {
+		init : function(themeNo,pageNo) {
+			$.getJSON(context+'/article/list/'+themeNo+'/'+pageNo,function(data) {
+			
 				var table = "<div id='boardList'><h1 align=center style='color:white;margin-bottom:30px'>자유게시판</h1>"
 				+"<TABLE id='tab_borderList'>"
-				+"<TR ALIGN=CENTER><TD WIDTH=10%><B>번호</B></TD>"
-				+"<TD WIDTH=40%><B>제 목</B></TD>"
-				+"<TD WIDTH=20%><B>작성자</B></TD>"
-				+"<TD WIDTH=20%><B>작성일</B></TD>"
-				+"<TD WIDTH=8%><B>참조</B></TD></TR>"
-				
-				/* 
-				+"<c:forEach var='member' items='${memberList}' varStatus='status'><TR>"
-				+"<TD WIDTH=10% ALIGN=CENTER>${status.index+1}</TD>"
-				+"<TD WIDTH=20% ALIGN=CENTER>${member.id}</TD>"
-				+"<TD WIDTH=20% ALIGN=CENTER><A HREF='BoardContent.jsp'>${member.name}</A></TD>"
-				+"<TD WIDTH=30% ALIGN=LEFT>${member.email}</TD>"
-				+"<TD WIDTH=18% ALIGN=CENTER>${member.regdate}</TD></TR></c:forEach>" */
-				+"</TABLE></div>"
-				+'<div style="width:100px;margin:auto"><a href="'+context+'/article/write">글쓰기</a><div>';
+				+"<TR ALIGN=CENTER><TD WIDTH=8%><B>번호</B></TD>"
+				+"<TD WIDTH=30%><B>제 목</B></TD>"
+				+"<TD WIDTH=60%><B>내 용</B></TD>"
+				+"</TR>";
+				$.each();
+				table += "</TABLE></div>";
+				table +='<div style="width:100px;margin:auto"><a href="'+context+'/article/write">글쓰기</a><div>';
 				$('.mainView').html(table);
 			});	
 		}

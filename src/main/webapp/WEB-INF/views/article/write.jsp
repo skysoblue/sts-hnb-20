@@ -12,20 +12,6 @@
 <TABLE WIDTH=620 BORDER=1 CELLSPACING=0 CELLPADDING=2 ALIGN=CENTER>
 
 	<TR>
-		<TD WIDTH=120 ALIGN=CENTER><B>이름</B></TD>
-		<TD WIDTH=500>
-			<INPUT TYPE=TEXT NAME="name" SIZE=20 style="ime-mode:active">
-		</TD>
-	</TR>
-	
-	<TR>
-		<TD WIDTH=120 ALIGN=CENTER><B>전자우편</B></TD>
-		<TD WIDTH=500>
-			<INPUT TYPE=TEXT NAME="mail" SIZE=60 style="ime-mode:inactive">
-		</TD>
-	</TR>
-	
-	<TR>
 		<TD WIDTH=120 ALIGN=CENTER><B>제목</B></TD>
 		<TD WIDTH=500>
 			<INPUT TYPE=TEXT NAME="subject" SIZE=70>
@@ -39,20 +25,7 @@
 		</TD>
 	</TR>
 	
-	<TR>
-		<TD WIDTH=120 ALIGN=CENTER><B>파일첨부</B></TD>
-		<TD WIDTH=500>
-			<INPUT TYPE=FILE NAME="filename" SIZE=60>
-		</TD>
-	</TR> 
-	 
-	<TR>
-		<TD WIDTH=120 ALIGN=CENTER><B>패스워드</B></TD>
-		<TD WIDTH=500>
-			<INPUT TYPE=PASSWORD NAME="pass" SIZE=20>
-		</TD>
-	</TR>
-	
+		
 </TABLE>
 
 </FORM>
