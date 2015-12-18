@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-
-<HTML>
-<HEAD>
-	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="TEXT/HTML; CHARSET=euc-kr"/>
-	<LINK REL="stylesheet" type="text/css" href="${context}//include/style.css"/>		
-	<TITLE>게시글 입력</TITLE>
-</HEAD>
-
-<BODY>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="${js}/global.js"></script>
 <TABLE WIDTH=620 HEIGHT=40 BORDER=0 CELLSPACING=1 CELLPADDING=1 ALIGN=CENTER>
 	<TR BGCOLOR=#A0A0A0>
 		<TD ALIGN=CENTER><FONT SIZE=4><B>게시판 ( 게시글 입력 )</B></FONT></TD>
@@ -70,16 +61,30 @@
 
 	<TR ALIGN=CENTER>
 		<TD WIDTH=110 ALIGN=LEFT>
-			<IMG SRC="../images/btn_list.gif" onClick="javascript:location.replace('BoardList.jsp')" STYLE=CURSOR:HAND>
+			<IMG id="go_list" SRC="${img}/btn_list.gif" STYLE=CURSOR:HAND>
 		</TD>
 		<TD WIDTH=400 ALIGN=CENTER>		
-			<IMG SRC="../images/btn_save.gif" STYLE=CURSOR:HAND>&nbsp;&nbsp;
-			<IMG SRC="../images/btn_cancel.gif" STYLE=CURSOR:HAND>
+			<IMG id="save" SRC="${img}/btn_save.gif" STYLE=CURSOR:HAND>&nbsp;&nbsp;
+			<IMG SRC="${img}/btn_cancel.gif" STYLE=CURSOR:HAND>
 		</TD>
 		<TD WIDTH=110 ALIGN=LEFT>&nbsp;</TD>   
 	</TR>
 	
 </TABLE>
+<script>
+$(function() {
+	var $goList = $('#go_list');
+	global.move($goList,context+'/article/list');
+	$('#save').click(function() {
+		write.save();
+	});
+});
+var write = {
+	save : function() {
+		var article = {
+				
+		};
+	}	
+}
 
-</BODY>
-</HTML>
+</script>
