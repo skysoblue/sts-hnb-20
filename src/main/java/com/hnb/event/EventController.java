@@ -27,28 +27,7 @@ public class EventController {
 	private static final Logger logger = LoggerFactory.getLogger(EventController.class);
 	@Autowired MemberVO member;
 	@Autowired MemberServiceImpl memberService;
-	@Autowired ArticleVO article;
-	@Autowired ArticleServiceImpl articleService;
 	
-	@RequestMapping("/boardList/{pageNo}")
-	public @ResponseBody List<ArticleVO> boardList(
-			@PathVariable("pageNo")String pageNo,
-			Model model){
-		logger.info("EventController article()");
-		logger.info("넘어온 페이지번호 : {}",pageNo);
-		List<ArticleVO> list = new ArrayList<ArticleVO>();
-		//List<ArticleVO> list = articleService.getList(CommandFactory.list(pageNo));
-		/*model.addAttribute("memberList",list);
-		model.addAttribute("count", service.count());
-		model.addAttribute("pageNo",pageNo);*/
-		
-		return list;
-	}
-	@RequestMapping("/boardList")
-	public String goList(){
-		logger.info("EventController article()");
-		return "event/boardList.tiles";
-	}
 	@RequestMapping("/memberSearch/{pageNo}")
 	public String memberSearch(
 			@PathVariable("pageNo")String pageNo,
