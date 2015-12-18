@@ -57,7 +57,7 @@ style='width:300px; height : 500px; background-color: white; margin : 0 auto;'>
 				+"<TD WIDTH=30%><B>제 목</B></TD>"
 				+"<TD WIDTH=60%><B>내 용</B></TD>"
 				+"</TR>";
-				$.each();
+				
 				table += "</TABLE></div>";
 				table +='<div style="width:100px;margin:auto"><a href="'+context+'/article/write">글쓰기</a><div>';
 				$('.mainView').html(table);
