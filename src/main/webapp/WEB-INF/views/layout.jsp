@@ -6,15 +6,27 @@
 	<title>한빛포트폴리오</title>
 	<link rel="stylesheet" href="${css}/common.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/magnific-popup.min.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js"></script>
-	
+	<style>
+.white-popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
+}
+</style>
 </head>
 <body>
 	<div id="wrap">
+	<div><a id="popup" href="#test-popup">팝업</a></div>
 		<div id="header">
 			<tiles:insertAttribute name="header" />
 		</div>
+		<div id="test-popup" class="white-popup mfp-hide">
+</div>
 		<div id="content">
 			<section class="sectionClass">
 				<div class="mainView">
@@ -25,6 +37,7 @@
 		<div id="footer">
 			<tiles:insertAttribute name="footer" />
 		</div>
+		
 	</div>
 <script src="${js}/global.js"></script>  
 <script src="${js}/member.js"></script>  
