@@ -29,7 +29,7 @@ public class JdbcTest {
 					Constants.MYSQL_PASSWORD);
 				stmt = conn.createStatement();
 				
-				rs = stmt.executeQuery("SELECT NAME FROM TEST WHERE ID = 'iu' ");
+				rs = stmt.executeQuery("SELECT NAME FROM EXAM WHERE ID = 'hong' ");
 				String id = null;
 				while (rs.next()) {
 					id = rs.getString("name");
