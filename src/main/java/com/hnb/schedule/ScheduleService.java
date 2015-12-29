@@ -1,10 +1,8 @@
-package com.hnb.mapper;
+package com.hnb.schedule;
 
 import java.util.List;
 
-import com.hnb.ticket.ScheduleVO;
-
-public interface ScheduleMapper {
+public interface ScheduleService {
 	public List<String> getRateList();
 	public List<String> getAscList();
 	public List<String> getTheaterList();
