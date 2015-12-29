@@ -6,40 +6,10 @@
 <script src="${js}/popup.js"></script>
 <script type='text/javascript'>
 	$(function() {
-		board.init('142','1');
-		var btn2 = $('');
-		$('#test-popup').magnificPopup({
-			  type:'inline',
-			  midClick: true,
-			  preloader:false,
-			  modal:true,
-			  closeContentPos:true,
-			  fixedContentPos:true,
-			  alignTop:false, /*최상단위치인데 가운데 위치시키려면..*/
-			  showCloseBtn:true
-			});
-		popup.close(btn2);
 		
 	});
 	var popup = {
-			open : function(btn) {
-				$(btn).magnificPopup({
-					  type:'ajax',
-					  midClick: true,
-					  preloader:false,
-					  modal:true,
-					  closeContentPos:true,
-					  fixedContentPos:true,
-					  alignTop:false, /*최상단위치인데 가운데 위치시키려면..*/
-					  showCloseBtn:true
-					});
-			},
-			close : function(btn2) {
-				$(btn2).click(function(e) {
-					e.preventDefault();
-					$.magnificPopup.close();
-				});
-			}
+			
 		};
 	var board = {
 		init : function(themeNo,pageNo) {

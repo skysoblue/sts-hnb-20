@@ -2,79 +2,105 @@ package com.hnb.schedule;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.hnb.mapper.ScheduleMapper;
+@Service
 public class ScheduleServiceImpl implements ScheduleService{
-	
+	private static final Logger logger = LoggerFactory.getLogger(ScheduleServiceImpl.class);
+	@Autowired private SqlSession sqlSession;
 	
 	@Override
 	public List<String> getRateList() {
-		return scheduleDAO.selectMovieRateAll();
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getRateList();
 	}
 	@Override
 	public List<String> getAscList() {
-		return scheduleDAO.selectMovieAscAll();
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getAscList();
 	}
 	@Override
 	public List<String> getTheaterList() {
-		return scheduleDAO.selectTheaterAll();
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getTheaterList();
 	}
 	@Override
 	public List<String> getShowDateList() {
-		return scheduleDAO.selectDateAll();
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getShowDateList();
 	}
 	@Override
 	public List<String> getTheaterListByM(String movie) {
-		return scheduleDAO.selectTheaterByM(movie);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getTheaterListByM(movie);
 	}
 	@Override
 	public List<String> getShowDateListByM(String movie) {
-		return scheduleDAO.selectDateByM(movie);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getShowDateListByM(movie);
 	}
 	@Override
 	public List getTheaterListByMD(String movie, String date) {
-		return scheduleDAO.selectTheaterByMD(movie, date);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getTheaterListByMD(movie,date);
 	}
 	@Override
 	public List getShowDateListByMT(String movie, String theater) {
-		return scheduleDAO.selectDateByMT(movie, theater);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getShowDateListByMT(movie,theater);
 	}
 	@Override
 	public List getMovieRateByTD(String theater, String date) {
-		return scheduleDAO.selectMovieRateByTD(theater, date);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getMovieRateByTD(theater,date);
 	}
 	@Override
 	public List getMovieAscByTD(String theater, String date) {
-		return scheduleDAO.selectMovieAscByTD(theater, date);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getMovieAscByTD(theater,date);
 	}
 	@Override
 	public List getMovieRateByT(String theater) {
-		return scheduleDAO.selectMovieRateByT(theater);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getMovieRateByT(theater);
 	}
 	@Override
 	public List getMovieAscByT(String theater) {
-		return scheduleDAO.selectMovieAscByT(theater);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getMovieAscByT(theater);
 	}
 	@Override
 	public List getShowDateListByT(String theater) {
-		return scheduleDAO.selectDateByT(theater);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getShowDateListByT(theater);
 	}
 	@Override
 	public List getMovieRateByD(String date) {
-		return scheduleDAO.selectMovieRateByD(date);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getMovieRateByD(date);
 	}
 	@Override
 	public List getMovieAscByD(String date) {
-		return scheduleDAO.selectMovieAscByD(date);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getMovieAscByD(date);
 	}
 	@Override
 	public List getTheaterListByD(String date) {
-		return scheduleDAO.selectTheaterByD(date);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getTheaterListByD(date);
 	}
 	@Override
 	public List getTimeList(String movie, String theater, String date) {
-		return scheduleDAO.selectTime(movie,theater,date);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getTimeList(movie,theater,date);
 	}
 	@Override
 	public String getFilmNumberBy(String movie) {
-		return scheduleDAO.selectFilmNumber(movie);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getFilmNumberBy(movie);
 	}
 }

@@ -30,6 +30,6 @@ public class MainController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "global/home.tiles";
+		return "global/default.tiles";
 	}
 }
